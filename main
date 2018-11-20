@@ -8,7 +8,7 @@ from ArticleManager import *
 from clickManager import on_combo_configure, onClickCombobox, addArticleToArticleList, clicked, addNew10Articles
 
 root = tk.Tk()
-root.title("testing the combobox")
+root.title("PJN Lab4")
 root.geometry('300x300+50+50')
 root.minsize(1500, 1000)
 #root.maxsize(1000, 700)
@@ -35,6 +35,8 @@ btn.grid(column=1, row=2)
 
 
 txtInScrolledText = scrolledtext.ScrolledText(root, height =55, width = 120)
+txtInScrolledText.config(state=tk.DISABLED)
+#txtInScrolledText.edit(False)
 
 
 c = ttk.Combobox(root, values=comboBoxValues, width = 60)
@@ -47,6 +49,7 @@ btn.grid(column=1, row=4)
 
 
 txtInScrolledText.grid(column=0,row=0, rowspan = 50)
+
 
 root.mainloop()
 

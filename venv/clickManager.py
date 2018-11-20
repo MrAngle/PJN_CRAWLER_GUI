@@ -14,7 +14,11 @@ def clicked(txt, lbl, comboBox,txtHolder):
     print(res)
 
     lbl.configure(text=res)
+    
+    txtHolder.configure(state="normal") #pozwala na wpisywanie czegos do scrollBoxa
     txtHolder.delete('1.0', tk.END)
+    txtHolder.configure(state="disable") #uniemozliwia wpisywanie czegos do scrollBoxa
+
     articleList.clear()
     comboBoxValues.clear()
     comboBox["values"] = comboBoxValues
@@ -61,6 +65,8 @@ def onClickCombobox(comboBoxIndex, txtHolder):
 
     start = comboBoxIndex * 10
     end = comboBoxIndex*10 + 10
+
+    txtHolder.configure(state="normal")
     txtHolder.delete('1.0', tk.END)
 
     for x in range(start, end):
@@ -68,5 +74,20 @@ def onClickCombobox(comboBoxIndex, txtHolder):
                          + " ======================\n\n\n")
         txtHolder.insert(tk.INSERT, articleList[x].getTextFromArtile(PATH_FOR_FILES))
 
+    txtHolder.configure(state="disable")
 
+
+# 1. Zmienic Sciezke w Configuration PATH_FOR_FILES
+# 2. zdefiniowac sposob dodawania artykulow w addArticleToArticleList
+# info: w momencie jak ktos kliknie search wykonywana jest funkcja clicked - wtedy usuwa wszystkie istniejace artykulu i
+# wartosci w drobboxie - pozniej zostaje dodane pierwsze 10 artyku³ów przez addArticleToArticleList
+# 
+# w momencie jak ktos kliknie add Next 10 Articles wywolywana jest funkcja addNew10Articles
+# mo¿esz w niej zdefiniowac co siê dzieje jak dodajesz 10 nowych artyku³ów
+# 
+# tekst pojawia siê jak wybierzesz cos z comboboxa - w tym samym momencie jest kasowane to co bylo wczesniej
+# 
+# 3. zdefiniowac sposob dodawania kolejnych 10 Artykulow - funkcja addNew10Articles
+# 
+# info: articleList przechowuje liste artykulow i jest ona trzymana w ArticleManager ( czyli wystarczy ze dodasz za pomoca append kolejne 10 Artykulow w jakis sposob)
 
